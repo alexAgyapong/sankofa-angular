@@ -1,0 +1,16 @@
+<form [formGroup]="searchForm" autocomplete="off">
+ <div class="row">
+    <div class="input-group col-8">
+      <div  *ngIf="!(isHandset$|async)" class="input-group-prepend">
+        <select class="custom-select" formControlName="categoryId" placeholder="Select category">
+          <option *ngFor="let category of categories" [value]="category?.id">
+            {{category?.name}}
+          </option>
+        </select>
+      </div>
+      <input type="search" class="form-control" formControlName="searchTerm" placeholder="Search term here....">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+   <!-- <div class="col-4"> <button type="submit" class="btn btn-primary">Search</button></div> -->
+ </div>
+</form>
