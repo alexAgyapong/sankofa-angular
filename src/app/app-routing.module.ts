@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { PropertyListComponent } from './properties/property-list/property-list.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 const routes: Routes = [{ path: 'home', component: HomeComponent },
 { path: '', pathMatch: 'full', redirectTo: '/home' },
 {
-  path: 'list', children: [
-    { path: '', component: PropertyListComponent },
+  path: 'products', children: [
+    { path: '', component: ProductListComponent },
   ]
 }
 ];

@@ -17,7 +17,7 @@ import { MaterialModule } from './../shared/modules/material/material.module';
 import { SearchComponent } from 'src/shared/components/search/search.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from 'src/shared/app-interceptor';
-import { PropertyListComponent } from './properties/property-list/property-list.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { PropertyListComponent } from './properties/property-list/property-list.
     NavigationComponent,
     HomeComponent,
     SearchComponent,
-    PropertyListComponent
+    ProductListComponent
   ],
   imports: [
   BrowserModule,

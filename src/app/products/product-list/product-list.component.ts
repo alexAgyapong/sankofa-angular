@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from 'src/shared/services/product.service';
 import { Observable } from 'rxjs';
+import { ProductService } from 'src/shared/services/product.service';
 
 @Component({
-  selector: 'app-property-list',
-  templateUrl: './property-list.component.html',
-  styleUrls: ['./property-list.component.scss']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-export class PropertyListComponent implements OnInit {
+export class ProductListComponent implements OnInit {
+
   searchParams: any;
   products$: Observable<any>;
 
@@ -24,4 +25,5 @@ export class PropertyListComponent implements OnInit {
   getProducts(req?: any): void {
     this.products$ = this.productService.getProducts(req);
   }
+
 }
