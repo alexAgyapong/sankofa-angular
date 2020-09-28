@@ -18,6 +18,7 @@ import { SearchComponent } from 'src/shared/components/search/search.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from 'src/shared/app-interceptor';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductCardComponent } from './products/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     NavigationComponent,
     HomeComponent,
     SearchComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductCardComponent
   ],
   imports: [
   BrowserModule,
