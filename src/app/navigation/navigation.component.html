@@ -38,5 +38,10 @@
 </mat-sidenav-container>
 
 <ng-template #mobileSearch>
-  <app-search></app-search>
+  <h2 mat-dialog-title mat-dialog-close class="text-right mb-1">
+    <mat-icon>close</mat-icon>
+  </h2>
+  <mat-dialog-content>
+    <app-search></app-search>
+  </mat-dialog-content>
 </ng-template>
