@@ -13,17 +13,24 @@
     <button type="submit" class="btn btn-primary">Search</button>
  </div> -->
   <div class="input-group pt-sm-4" style="font-size: 12px">
-    <mat-form-field *ngIf="!( isHandset$|async)" appearance="outline" placeholder="Select category..." class="w-25" >
-      <mat-select>
+    <mat-form-field *ngIf="!( isHandset$|async)" appearance="outline" placeholder="Select category..." class="w-25">
+      <mat-select formControlName="categoryId">
         <mat-option *ngFor="let category of categories$|async" [value]="category?.id">
           {{category?.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="w-75" >
-      <input matInput placeholder="Search">
+    <mat-form-field appearance="outline" class="w-75">
+      <input matInput placeholder="Search" formControlName="searchTerm">
     </mat-form-field>
-    <button mat-raised-button color="accent" class="ml-sm-2 w-25">Search</button>
-    <!-- <div><button mat-button>Search</button></div> -->
+    <button mat-raised-button color="accent" class="ml-sm-2 w-25" (click)="search()">Search</button>
+  </div>
+
+  <div *ngIf="false"  class="pt-5">
+    <mat-form-field appearance="fill">
+      <button mat-raised-button matPrefix color="primary" class="ml-0">prefix</button>
+      <input matInput placeholder="test me heree" class="mx-3">
+      <button mat-raised-button matSuffix color="accent"  class="mr-0">suffix</button>
+    </mat-form-field>
   </div>
 </form>

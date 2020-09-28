@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { ProductService } from 'src/shared/services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,18 +15,19 @@ import { ProductService } from 'src/shared/services/product.service';
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
 
-  categories = [{ name: 'Shirts', id: 1 }, { name: 'shoes', id: 2 }]
+  categories = [{ name: 'Shirts', id: 1 }, { name: 'shoes', id: 2 }];
   isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
   categories$: Observable<any>;
 
   constructor(private fb: FormBuilder,
-    private breakPointObserver: BreakpointObserver,
-    private productService: ProductService) { }
+              private breakPointObserver: BreakpointObserver,
+              private productService: ProductService,
+              private router: Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCategories();
     this.setupForm();
-    this.searchForm.valueChanges.subscribe(input => console.log({ input }))
+    this.searchForm.valueChanges.subscribe(input => console.log({ input }));
   }
 
   setupForm(): void {
@@ -33,10 +35,20 @@ export class SearchComponent implements OnInit {
       searchTerm: [''],
       categoryId: ['']
     });
-  }
 
+    this.route.queryParamMap.subscribe(params=>{
+      this.searchForm.patchValue(params);
+      console.log({params}, 'form', this.searchForm.value);
+
+    })
+  }
 
   getCategories(): void {
     this.categories$ = this.productService.getCategories();
+  }
+
+  search(): void {
+
+    this.router.navigate(['/list'], { queryParams: this.searchForm?.value });
   }
 }
