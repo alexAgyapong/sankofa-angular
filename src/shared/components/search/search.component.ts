@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { ProductService } from 'src/shared/services/product.service';
 
 
 @Component({
@@ -15,10 +16,14 @@ export class SearchComponent implements OnInit {
 
   categories = [{ name: 'Shirts', id: 1 }, { name: 'shoes', id: 2 }]
   isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
+  categories$: Observable<any>;
 
-  constructor(private fb: FormBuilder, private breakPointObserver: BreakpointObserver) { }
+  constructor(private fb: FormBuilder,
+    private breakPointObserver: BreakpointObserver,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getCategories();
     this.setupForm();
     this.searchForm.valueChanges.subscribe(input => console.log({ input }))
   }
@@ -30,4 +35,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
+
+  getCategories(): void {
+    this.categories$ = this.productService.getCategories();
+  }
 }
