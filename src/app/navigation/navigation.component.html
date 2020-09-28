@@ -10,17 +10,27 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <!-- <mat-toolbar color="primary"> -->
+    <mat-toolbar>
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="mr-auto">Sankofa</span>
       <ng-container *ngIf="!(isHandset$|async)">
+        <app-search></app-search>
+      </ng-container>
+      <ng-container *ngIf="isHandset$|async">
+        <button mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </ng-container>
+
+      <span class="ml-auto" *ngIf="!(isHandset$|async)">
         <a href="#">Link 1</a>
         <a href="#">Link 2</a>
         <a href="#">Link 3</a>
-      </ng-container>
+      </span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>
