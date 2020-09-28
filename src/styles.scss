@@ -12,3 +12,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // @import '/node_modules/bootstrap/scss/reboot';
 @import '/node_modules/bootstrap/scss/grid';
 @import '/node_modules/bootstrap/scss/utilities';
+
+
+/* Form */
+.custom-mat-form-field{
+  height: 20px;
+}
+
+.full-screen-modal {
+  max-width: unset !important;
+  width: 100%;
+  height: 100%;
+  .mat-dialog-container {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: 100%;
+    width: 100%;
+    .mat-dialog-content {
+      max-height: unset !important;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
 
   categories = [{ name: 'Shirts', id: 1 }, { name: 'shoes', id: 2 }]
-  isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
+  isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
 
   constructor(private fb: FormBuilder, private breakPointObserver: BreakpointObserver) { }
 

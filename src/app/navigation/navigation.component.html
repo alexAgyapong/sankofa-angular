@@ -21,7 +21,7 @@
         <app-search></app-search>
       </ng-container>
       <ng-container *ngIf="isHandset$|async">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="showSearch(mobileSearch)">
           <mat-icon>search</mat-icon>
         </button>
       </ng-container>
@@ -36,3 +36,7 @@
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #mobileSearch>
+  <app-search></app-search>
+</ng-template>
