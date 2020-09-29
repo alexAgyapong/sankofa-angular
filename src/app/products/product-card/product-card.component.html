@@ -13,7 +13,7 @@
 <div class=" m-sm-2 mb-3 mx-3 h-100 ">
   <img [src]="product?.image?.sizes[2]?.url" [alt]="product?.image?.caption" class="img-fluid">
  <span class="d-flex flex-column justify-content-between info mb-3">
-    <p>{{product?.name}}</p>
+    <p class="text-truncate">{{product?.name}}</p>
     <p class="mb-0 ">{{product?.maximumPriceString}}</p>
  </span>
 </div>
