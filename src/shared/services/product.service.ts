@@ -25,17 +25,21 @@ export class ProductService {
 
   getProducts(req?: RequestOption): Observable<any> {
     const params = this.setQueryParams(req);
+    console.log({params}, 'in service');
+
     const url = `${environment.baseURL}/products/`;
     return this.http.get<any>(url, { params });
   }
 
   setQueryParams(req: RequestOption): HttpParams {
-    let option = new HttpParams({
+    const option = new HttpParams({
       fromObject: {
         publisherId: req?.publisherId || 'TEST',
-        locale: req?.locale || 'en_GB'
+        locale: req?.locale || 'en_GB',
+        term: req?.term || '',
+        categoryId: req?.categoryId || ''
       }
-    })
+    });
 
     return option;
   }
