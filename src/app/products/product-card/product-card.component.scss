@@ -1,13 +1,18 @@
-.card-container{
+.card-container {
   max-width: 300px;
-//  max-height: 400px;
+  //  max-height: 400px;
+  max-height: 100%;
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
 
-.info{
+.info {
   height: 60px;
+}
+
+a{
+  text-decoration: none;
 }
