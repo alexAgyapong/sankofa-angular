@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { ProductResult } from 'src/shared/models/product';
 import { ProductService } from 'src/shared/services/product.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ProductService } from 'src/shared/services/product.service';
 export class ProductListComponent implements OnInit, OnDestroy {
 
   searchParams: any;
-  products$: Observable<any>;
+  productResult$: Observable<ProductResult>;
   subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) { }
@@ -24,7 +25,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   getProducts(req?: any): void {
-    this.products$ = this.productService.getProducts(req);
+    this.productResult$ = this.productService.getProducts(req);
   }
 
 

@@ -1,3 +1,9 @@
-<p>product-list works!</p>
-<app-product-card></app-product-card>
-<!-- {{products$|async|json}} -->
+<ng-container *ngIf="productResult$|async as result ">
+  <div class="container bg-light pt-5">
+    <div class="row row-cols-1 row-cols-md-4">
+      <div *ngFor="let product of result?.products">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+  </div>
+</ng-container>
