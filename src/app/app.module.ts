@@ -19,6 +19,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from 'src/shared/app-interceptor';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
+import { FilterComponent } from './shared/components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     HomeComponent,
     SearchComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    FilterComponent
   ],
   imports: [
   BrowserModule,

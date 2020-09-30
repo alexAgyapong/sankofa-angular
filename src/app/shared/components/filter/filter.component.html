@@ -1,0 +1,43 @@
+<div class="border p-2">
+  <h3 class="pl-2">Filters</h3>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        Category
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngFor="let category of categories">
+      <a role="button">{{category?.name}}</a>
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="my-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        Brands
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngFor="let brand of brands">
+      <a role="button">{{brand?.name}}</a>
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="mb-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        Sellers
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngFor="let seller of sellers">
+      <a role="button">{{seller?.name}}</a>
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="mb-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="title">
+        Price
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngFor="let priceRange of priceRanges">
+      <a role="button">{{priceRange?.minimumPriceString}} - {{priceRange?.maximumPriceString}}</a>
+    </p>
+  </mat-expansion-panel>
+</div>
