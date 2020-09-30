@@ -1,14 +1,12 @@
 <ng-container *ngIf="productResult$|async as result ">
-  <div class="container bg-gray pt-5">
+  <div class="container bg-light pt-5">
     <div class="row">
-      <!-- <div class="col-sm-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore unde provident, cum officia eum voluptatum adipisci reprehenderit maxime aspernatur eaque.</div>
-<div class="col-sm-8 bg-danger">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium molestiae fugiat adipisci ea commodi autem, nostrum deleniti laudantium maxime doloribus quasi excepturi explicabo nihil eum delectus, vero sed tenetur tempore quod distinctio architecto dicta.</div> -->
-      <div class="col-sm-2 mt-sm-2">
+      <div class="col-sm-3 mt-sm-2">
         <app-filter [categories]="result?.categories" [brands]="result?.brands" [sellers]="result?.sellers"
           [priceRanges]="result?.priceRanges">
         </app-filter>
       </div>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="row row-cols-1 row-cols-md-3 ">
           <div *ngFor="let product of result?.products">
             <app-product-card [product]="product"></app-product-card>
