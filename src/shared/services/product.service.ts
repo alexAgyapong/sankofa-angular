@@ -37,7 +37,9 @@ export class ProductService {
         publisherId: req?.publisherId || 'TEST',
         locale: req?.locale || 'en_GB',
         term: req?.term || '',
-        categoryId: req?.categoryId || ''
+        categoryId: req?.categoryId || '',
+        brandId: req?.brandId || '',
+        sellerId: req?.sellerId || ''
       }
     });
 

@@ -2,49 +2,53 @@
   <h3 class="pl-2">Filters</h3>
 </div> -->
 <div class="bg-white">
-  <mat-accordion multi="true" displayMode="flat" #accordion="matAccordion">
-    <mat-expansion-panel [class.mat-expansion-panel]="false">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-          Category
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p *ngFor="let category of categories">
-        <a role="button">{{category?.name}}</a>
-      </p>
-    </mat-expansion-panel>
-    <mat-divider></mat-divider>
-    <mat-expansion-panel [class.mat-expansion-panel]="false">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-          Brands
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p *ngFor="let brand of brands">
-        <a role="button">{{brand?.name}}</a>
-      </p>
-    </mat-expansion-panel >
-    <mat-divider></mat-divider>
-    <mat-expansion-panel [class.mat-expansion-panel]="false">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-          Sellers
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p *ngFor="let seller of sellers">
-        <a role="button">{{seller?.name}}</a>
-      </p>
-    </mat-expansion-panel>
-    <mat-divider></mat-divider>
-    <mat-expansion-panel [class.mat-expansion-panel]="false">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="title">
-          Price
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p *ngFor="let priceRange of priceRanges">
-        <a role="button">{{priceRange?.minimumPriceString}} - {{priceRange?.maximumPriceString}}</a>
-      </p>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <button mat-button color="primary" (click)="resetFilters()">Clear all filters</button>
+  <form [formGroup]="filterForm">
+    <mat-accordion multi="true" displayMode="flat" #accordion="matAccordion">
+      <mat-expansion-panel [class.mat-expansion-panel]="false" *ngIf="categories?.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Category
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let category of categories">
+          <a role="button" (click)="getId(category?.id, 'category')">{{category?.name}} ({{category?.productCount}})</a>
+        </p>
+      </mat-expansion-panel>
+      <mat-divider *ngIf="categories?.length"></mat-divider>
+      <mat-expansion-panel [class.mat-expansion-panel]="false" *ngIf="brands?.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Brands
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let brand of brands">
+          <a role="button" (click)="getId(brand?.id, 'brand')">{{brand?.name}} ({{brand?.productCount}})</a>
+          <!-- <mat-radio-button [value]="brand?.id" formControlName="brandId">{{brand?.name}}</mat-radio-button> -->
+        </p>
+      </mat-expansion-panel>
+      <mat-divider *ngIf="brands?.length"></mat-divider>
+      <mat-expansion-panel [class.mat-expansion-panel]="false" *ngIf="sellers?.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Sellers
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let seller of sellers">
+          <a role="button" (click)="getId(seller?.id, 'seller')">{{seller?.name}} ({{seller?.productCount}})</a>
+        </p>
+      </mat-expansion-panel>
+      <mat-divider *ngIf="sellers?.length"></mat-divider>
+      <mat-expansion-panel [class.mat-expansion-panel]="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Price
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let priceRange of priceRanges">
+          <a role="button">{{priceRange?.minimumPriceString}} - {{priceRange?.maximumPriceString}}</a>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
 </div>

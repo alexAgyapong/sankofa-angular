@@ -10,7 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatDividerModule } from "@angular/material/divider";
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 const materialModules = [
   MatToolbarModule,
@@ -24,7 +27,9 @@ const materialModules = [
   MatDialogModule,
   MatCardModule,
   MatExpansionModule,
-  MatDividerModule
+  MatDividerModule,
+  MatCheckboxModule,
+  MatRadioModule
 ];
 
 @NgModule({
