@@ -58,7 +58,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
 
   resetFilters(): void {
     this.filters = { ...this.filters, categoryId: '', brandId: '', sellerId: '' };
-    this.router.navigate(['/products'], { queryParams: { ...this.filters}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/products'], { queryParams: { ...this.filters, start: '', page: 1 }, queryParamsHandling: 'merge' });
     console.log('filters cleared', this.filters);
   }
 }
