@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
       categoryId: ['']
     });
 
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.searchForm.patchValue(params);
     });
   }
@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
       {
         queryParams: {
           ...this.searchForm?.value,
-          pageNumber: '1', start: ''
+          page: '1', start: ''
         }
       });
   }

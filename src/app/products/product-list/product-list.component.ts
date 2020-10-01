@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.route.queryParams.subscribe(params => {
       this.searchParams = params;
-      this.pageNumber = params.pageNumber ? +params.pageNumber : 0;
+      this.pageNumber = params?.page ? +params.page : 0;
       this.searchParams = { ...this.searchParams, perPage: this.pageSize };
       console.log('params', this.searchParams);
 
@@ -43,7 +43,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/products'],
       {
         queryParams:
-          { start, pageNumber: this.pageNumber },
+          { start, page: this.pageNumber },
         queryParamsHandling: 'merge'
       });
     console.log('page number', this.pageNumber, { start });
