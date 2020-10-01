@@ -8,7 +8,7 @@
           </option>
         </select>
       </div>
-      <input type="search" class="form-control" formControlName="searchTerm" placeholder="Search term here....">
+      <input type="search" class="form-control" formControlName="term" placeholder="Search term here....">
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
  </div> -->
@@ -21,7 +21,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline" class="w-75">
-      <input matInput placeholder="Search" formControlName="searchTerm">
+      <input matInput placeholder="Search" formControlName="term">
     </mat-form-field>
     <button mat-raised-button color="accent" class="ml-sm-2 w-25" (click)="search()">Search</button>
   </div>

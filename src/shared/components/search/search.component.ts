@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private breakPointObserver: BreakpointObserver,
               private productService: ProductService,
-              private router: Router, private route:ActivatedRoute) { }
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -32,15 +32,13 @@ export class SearchComponent implements OnInit {
 
   setupForm(): void {
     this.searchForm = this.fb.group({
-      searchTerm: [''],
+      term: [''],
       categoryId: ['']
     });
 
-    this.route.queryParamMap.subscribe(params=>{
+    this.route.queryParamMap.subscribe(params => {
       this.searchForm.patchValue(params);
-      console.log({params}, 'form', this.searchForm.value);
-
-    })
+    });
   }
 
   getCategories(): void {
@@ -48,7 +46,12 @@ export class SearchComponent implements OnInit {
   }
 
   search(): void {
-
-    this.router.navigate(['/products'], { queryParams: this.searchForm?.value });
+    this.router.navigate(['/products'],
+      {
+        queryParams: {
+          ...this.searchForm?.value,
+          pageNumber: '1', start: ''
+        }
+      });
   }
 }

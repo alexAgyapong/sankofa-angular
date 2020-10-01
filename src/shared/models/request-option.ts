@@ -1,6 +1,6 @@
 export interface RequestOption {
-  publisherId: string;
-  locale: string;
+  publisherId?: string;
+  locale?: string;
   site?: string;
   shipCountry?: string;
   term?: string;
@@ -11,5 +11,4 @@ export interface RequestOption {
   sellerId?: string;
   priceRangeId?: string;
   onlyMaProducts?: string;
-
 }

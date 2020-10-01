@@ -12,7 +12,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-
   getCategories(req?: RequestOption): Observable<any> {
     const params = this.setQueryParams(req);
     const url = `${environment.baseURL}/categories/`;
@@ -25,7 +24,7 @@ export class ProductService {
 
   getProducts(req?: RequestOption): Observable<any> {
     const params = this.setQueryParams(req);
-    console.log({params}, 'in service');
+    console.log({ params }, 'in service');
 
     const url = `${environment.baseURL}/products/`;
     return this.http.get<any>(url, { params });
@@ -39,7 +38,9 @@ export class ProductService {
         term: req?.term || '',
         categoryId: req?.categoryId || '',
         brandId: req?.brandId || '',
-        sellerId: req?.sellerId || ''
+        sellerId: req?.sellerId || '',
+        perPage: req?.perPage?.toString() || '30',
+        start: req?.start?.toString() || ''
       }
     });
 
