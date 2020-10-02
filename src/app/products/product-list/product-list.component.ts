@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, AfterViewInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ProductResult } from 'src/shared/models/product';
 import { ProductService } from 'src/shared/services/product.service';
 import { RequestOption } from './../../../shared/models/request-option';
+import { Product } from './../../../shared/models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -15,11 +16,13 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchParams: RequestOption;
   productResult$: Observable<ProductResult>;
+  products: Product[] = [];
   subscription: Subscription;
   pageNumber = 0;
   pageSize = 30;
-  @ViewChildren('productsDiv') products: QueryList<ElementRef>;
-  isLoading: boolean = false;
+
+  @ViewChildren('productsDiv') productElements: QueryList<ElementRef>;
+  isLoading = false;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService) { }
@@ -29,6 +32,7 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription = this.route.queryParams.subscribe(params => {
       this.searchParams = params;
       this.pageNumber = params?.page ? +params.page : 0;
+      // this.test();
       this.searchParams = { ...this.searchParams, perPage: this.pageSize };
       console.log('params', this.searchParams);
 
@@ -36,16 +40,25 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  private test() {
+    if (this.pageNumber > 1 && !this.products.length) {
+      const products = this.getProductsFromLocalStorage();
+      this.products = products;
+      console.log('page size', this.pageSize, 'page number', this.pageNumber, { products });
+
+    }
+  }
+
   ngAfterViewInit(): void {
-    this.scrollToLastProduct();
+    // this.scrollToLastProduct();
   }
 
   scrollToLastProduct(): void {
     console.log('loading', this.isLoading);
     if (this.pageNumber > 1) {
       setTimeout(() => {
-        this.products.changes.subscribe(x => {
-          const lastElement = this.products.last;
+        this.productElements.changes.subscribe(x => {
+          const lastElement = this.productElements.last;
           lastElement?.nativeElement?.scrollIntoView();
           console.log({ lastElement });
         });
@@ -56,7 +69,31 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   getProducts(req?: RequestOption): void {
     this.isLoading = true;
     this.productResult$ = this.productService.getProducts(req)
-      .pipe(tap(res => { if (res) { this.isLoading = false; this.scrollToLastProduct(); } }));
+      .pipe(
+        tap((res: ProductResult) => {
+          if (res) {
+            this.isLoading = false;
+            // this.pageNumber === 1 ? this.products = res.products
+            //   : this.products = this.products.concat(res?.products);
+            if (this.pageNumber === 1) {
+              this.products = res.products;
+            } else {
+              const products = this.getProductsFromLocalStorage();
+              if (this.pageNumber > 1 && !this.products.length && products.length) {
+                this.products = products;
+                console.log('page size', this.pageSize, 'page number', this.pageNumber, { products });
+              } else {
+                this.products = this.products.concat(res?.products);
+              }
+            }
+            console.log('all products', this.products);
+            this.addProductsToLocalStorage();
+            this.scrollToLastProduct();
+          }
+        }),
+        map(data => ({ ...data, products: this.products })),
+        tap(result => console.log(result.products, 'test...'))
+      );
   }
 
 
@@ -77,6 +114,14 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     return (size * (page - 1) + (page - 1));
   }
 
+  addProductsToLocalStorage(): void {
+    localStorage.setItem('products', JSON.stringify(this.products));
+  }
+
+  getProductsFromLocalStorage(): Product[] {
+    const res = localStorage.getItem('products');
+    return JSON.parse(res) as Product[];
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
