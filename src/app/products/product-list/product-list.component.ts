@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   products: Product[] = [];
   subscription: Subscription;
   pageNumber = 0;
-  pageSize = 30;
+  pageSize = 48;
 
   @ViewChildren('productsDiv') productElements: QueryList<ElementRef>;
   isLoading = false;
@@ -50,7 +50,7 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // this.scrollToLastProduct();
+    this.scrollToLastProduct();
   }
 
   scrollToLastProduct(): void {
