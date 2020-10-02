@@ -1,3 +1,8 @@
+<span *ngIf="isLoading" class="d-flex flex-column align-items-center">
+  <!-- <mat-progress-spinner class="text-center  mt-5" [color]="color" [mode]="mode" [value]="value"></mat-progress-spinner> -->
+  <span></span>
+  <mat-spinner class="mt-5 pt-5" [strokeWidth]="2"></mat-spinner>
+</span>
 <ng-container *ngIf="productResult$|async as result ">
   <div class="container bg-light pt-5">
     <div class="row">
@@ -7,15 +12,17 @@
         </app-filter>
       </div>
       <div class="col-sm-8">
+
         <span class="ml-3 pb-5"><span class="font-weight-bold">{{result?.numberOfProducts}}</span> products found</span>
         <div class="row row-cols-1 row-cols-md-3 ">
           <div #productsDiv *ngFor="let product of result?.products">
             <app-product-card [product]="product"></app-product-card>
           </div>
         </div>
-       <div class="d-flex flex-column align-items-center mt-3 pb-4">
-         <span>Showing {{products?.length}} of {{result?.numberOfProducts}} items</span>
-         <button mat-stroked-button class="mt-2" (click)="loadMore()">Load more</button>
+        <div class="d-flex flex-column align-items-center mt-3 pb-4">
+          <span>Showing {{products?.length}} of {{result?.numberOfProducts}} items</span>
+          <button mat-stroked-button class="mt-2" (click)="loadMore()">Load more</button>
+          <!-- <mat-progress-spinner class="mt-5" [color]="color" [mode]="mode" [value]="value"></mat-progress-spinner> -->
         </div>
       </div>
     </div>

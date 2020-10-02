@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
-import { Category, Seller } from 'src/shared/models/product';
+import { Category, Product, Seller } from 'src/shared/models/product';
 import { Brand, PriceRange } from './../../../../shared/models/product';
 import { Router } from '@angular/router';
 
@@ -38,6 +38,11 @@ export class FilterComponent implements OnInit, AfterViewInit {
   }
 
   getId(id: string, idType: string): void {
+    // localStorage.removeItem('products'); // remove products from storage
+    // const res = localStorage.getItem('products');
+    // const products = JSON.parse(res) as Product[];
+    // console.log({products}, 'in filter should be empty');
+
     switch (idType) {
       case 'category':
         if (this.categories.length === 1) { return; }

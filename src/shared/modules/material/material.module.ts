@@ -13,6 +13,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 const materialModules = [
@@ -29,7 +31,8 @@ const materialModules = [
   MatExpansionModule,
   MatDividerModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

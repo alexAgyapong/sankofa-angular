@@ -6,6 +6,8 @@ import { ProductResult } from 'src/shared/models/product';
 import { ProductService } from 'src/shared/services/product.service';
 import { RequestOption } from './../../../shared/models/request-option';
 import { Product } from './../../../shared/models/product';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-product-list',
@@ -20,9 +22,13 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   subscription: Subscription;
   pageNumber = 0;
   pageSize = 48;
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 60;
+  strokeWidth: 2;
 
   @ViewChildren('productsDiv') productElements: QueryList<ElementRef>;
-  isLoading = false;
+  isLoading = true;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService) { }
