@@ -1,5 +1,10 @@
-.layout-row{
-  display: flex;
-  align-items: stretch;
+.scroll-to-top{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  margin: 1rem;
+}
 
+.icon-display {
+  transform: scale(1.5);
 }

@@ -129,6 +129,9 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     return JSON.parse(res) as Product[];
   }
 
+  scrollToTop(el: HTMLElement) {
+    el.scrollIntoView();
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
