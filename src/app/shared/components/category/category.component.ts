@@ -1,11 +1,12 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ProductService } from 'src/shared/services/product.service';
 import { Category } from 'src/shared/models/product';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-category',
@@ -16,14 +17,15 @@ export class CategoryComponent implements OnInit {
 
   categoryForm: FormGroup;
 
-  categories = [{ name: 'Shirts', id: 1 }, { name: 'shoes', id: 2 }];
   isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
   categories$: Observable<Category[]>;
 
   constructor(private fb: FormBuilder,
-              private breakPointObserver: BreakpointObserver,
-              private productService: ProductService,
-              private router: Router, private route: ActivatedRoute) { }
+    private breakPointObserver: BreakpointObserver,
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -32,7 +34,7 @@ export class CategoryComponent implements OnInit {
   }
 
   setupForm(): void {
-    this.categoryForm = this.fb.group({categoryId: ['']});
+    this.categoryForm = this.fb.group({ categoryId: [''] });
 
     this.route.queryParams.subscribe(params => {
       this.categoryForm.patchValue(params);
@@ -43,14 +45,20 @@ export class CategoryComponent implements OnInit {
     this.categories$ = this.productService.getCategories();
   }
 
-  search(): void {
+  search(id: string): void {
     this.router.navigate(['/products'],
       {
         queryParams: {
-          ...this.categoryForm?.value,
+          categoryId: id,
           page: '1', start: ''
         }
       });
   }
 
+
+  showSubCategory(template: TemplateRef<any>, subCategories: Category[]): void {
+    console.log({ subCategories });
+
+    this.dialog.open(template, { data: subCategories, panelClass: ['sidenav-modal'] });
+  }
 }

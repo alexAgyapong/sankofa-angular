@@ -8,6 +8,7 @@ export interface Category {
   id: string;
   name: string;
   productCount: number;
+  subCategories: Category[];
 }
 
 export interface PriceRange {

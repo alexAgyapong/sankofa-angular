@@ -1,17 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav #drawer class="sidenav w-25" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="!(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true"
     [ngClass]="{'hidden': !showCategories}">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
+    <app-category></app-category>
   </mat-sidenav>
 
-
-  <!-- duplicate -->
+  <!-- Right sidenav -->
   <mat-sidenav #rightDrawer position="end"  class="sidenav" fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"  [ngClass]="{'hidden': !(isHandset$|async)}">

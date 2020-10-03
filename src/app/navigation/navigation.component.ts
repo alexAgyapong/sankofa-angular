@@ -15,7 +15,7 @@ export class NavigationComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
-      shareReplay()
+      shareReplay(1)
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog) { }
