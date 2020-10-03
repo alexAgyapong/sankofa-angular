@@ -21,6 +21,11 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { FilterComponent } from './shared/components/filter/filter.component';
 
+// Libraries
+
+import { MdePopoverModule } from '@material-extended/mde';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,11 +44,7 @@ import { FilterComponent } from './shared/components/filter/filter.component';
   LayoutModule,
   MaterialModule,
   AppRoutingModule,
-    // MatToolbarModule,
-    // MatButtonModule,
-    // MatSidenavModule,
-    // MatIconModule,
-    // MatListModule
+  MdePopoverModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }

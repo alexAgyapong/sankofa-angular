@@ -33,10 +33,21 @@
         </button>
       </ng-container>
       <span class="ml-auto" *ngIf="!(isHandset$|async)">
+        <a role="button" color="primary" [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click"
+          #popoverTrigger="mdePopoverTrigger">Shop</a>
         <a href="#">Sign in</a>
         <a href="#">Fav</a>
       </span>
+
+      <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+        <mat-card style="max-width: 300px">
+          <mat-card-content>
+            A material design popover component created using Angular version 8 with the Angular CDK.
+          </mat-card-content>
+        </mat-card>
+      </mde-popover>
     </mat-toolbar>
+
     <!-- Add Content Here -->
     <ng-content></ng-content>
   </mat-sidenav-content>
