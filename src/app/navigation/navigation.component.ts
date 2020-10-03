@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class NavigationComponent {
   showCategories = false;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -19,6 +20,11 @@ export class NavigationComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog) { }
 
+  toggleFlag(): void {
+
+    this.showCategories = !this.showCategories;
+    console.log('clicked', this.showCategories);
+  }
 
   showSearch(template: TemplateRef<any>): void {
     this.dialog.open(template, { panelClass: ['full-screen-modal'] })
