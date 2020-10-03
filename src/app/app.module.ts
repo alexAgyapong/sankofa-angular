@@ -24,6 +24,7 @@ import { FilterComponent } from './shared/components/filter/filter.component';
 // Libraries
 
 import { MdePopoverModule } from '@material-extended/mde';
+import { CategoryComponent } from './shared/components/category/category.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MdePopoverModule } from '@material-extended/mde';
     SearchComponent,
     ProductListComponent,
     ProductCardComponent,
-    FilterComponent
+    FilterComponent,
+    CategoryComponent
   ],
   imports: [
   BrowserModule,
