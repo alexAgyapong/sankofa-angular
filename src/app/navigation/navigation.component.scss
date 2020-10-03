@@ -18,11 +18,31 @@
 
 .mat-toolbar a {
   text-decoration: none;
-  color: black;
+  color: white;
   margin: 0 10px;
   display: inline-block;
 }
 
 .hidden{
   display: none;
+}
+
+.mat-toolbar.mat-gray{
+  background-color:white;
+}
+.search-input mat-form-field.mat-form-field{
+  color: white;
+  // background-color: white;
+
+  // .mat-form-field-appearance-outline{
+  //   color: red;
+  // }
+  /* Border */
+// .mat-form-field-appearance-outline .mat-form-field-outline {
+//   color: red;
+// }
+// /* Font color */
+// input.mat-input-element {
+//   color: green;
+// }
 }

@@ -10,26 +10,31 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- <mat-toolbar color="primary"> -->
-    <mat-toolbar>
+    <mat-toolbar color="primary">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a class="mr-auto" [routerLink]="['/']" routerLinkActive="router-link-active" >Sankofa</a>
+      <a class="mr-auto" [routerLink]="['/']">Sankofa</a>
       <ng-container *ngIf="!(isHandset$|async)">
-        <app-search></app-search>
+        <!-- <div class="search-input mt-3" style="font-size: 12px">
+          <mat-form-field appearance="outline" color="red">
+            <input matInput placeholder="Search" role="button" (click)="showSearch(desktopSearch)">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div> -->
+        <div class="w-50">
+          <app-search></app-search>
+        </div>
       </ng-container>
       <ng-container *ngIf="isHandset$|async">
         <button mat-icon-button (click)="showSearch(mobileSearch)">
           <mat-icon>search</mat-icon>
         </button>
       </ng-container>
-
       <span class="ml-auto" *ngIf="!(isHandset$|async)">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <a href="#">Sign in</a>
+        <a href="#">Fav</a>
       </span>
     </mat-toolbar>
     <!-- Add Content Here -->
@@ -37,7 +42,21 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
+<ng-template #desktopSearch>
+  <div *ngTemplateOutlet="search"></div>
+</ng-template>
+
 <ng-template #mobileSearch>
+  <!-- <h2 mat-dialog-title mat-dialog-close class="text-right mb-1">
+    <mat-icon>close</mat-icon>
+  </h2>
+  <mat-dialog-content>
+    <app-search></app-search>
+  </mat-dialog-content> -->
+  <div *ngTemplateOutlet="search"></div>
+</ng-template>
+
+<ng-template #search>
   <h2 mat-dialog-title mat-dialog-close class="text-right mb-1">
     <mat-icon>close</mat-icon>
   </h2>

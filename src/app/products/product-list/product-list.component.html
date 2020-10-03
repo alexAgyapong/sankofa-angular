@@ -5,14 +5,15 @@
 </span>
 <ng-container *ngIf="productResult$|async as result ">
   <div class="container bg-light pt-5">
+    <span class="ml-3"><span class="font-weight-bold">{{result?.numberOfProducts}}</span> products found</span>
     <div class="row">
       <div class="col-sm-3 mt-sm-2">
         <app-filter [categories]="result?.categories" [brands]="result?.brands" [sellers]="result?.sellers"
-          [priceRanges]="result?.priceRanges">
-        </app-filter>
-      </div>
-      <div class="col-sm-8" #top>
-        <span class="ml-3 pb-5"><span class="font-weight-bold">{{result?.numberOfProducts}}</span> products found</span>
+        [priceRanges]="result?.priceRanges">
+      </app-filter>
+    </div>
+    <div class="col-sm-8" #top>
+      <!-- <span class="row ml-3 border border-danger"><span class="font-weight-bold">{{result?.numberOfProducts}}</span> products found</span> -->
         <div class="row row-cols-1 row-cols-md-3 ">
           <div #productsDiv *ngFor="let product of result?.products">
             <app-product-card [product]="product"></app-product-card>

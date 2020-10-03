@@ -1,36 +1,33 @@
 <form [formGroup]="searchForm" autocomplete="off">
-  <!-- <div class="row">
-    <div class="input-group col-8">
-      <div  *ngIf="!(isHandset$|async)" class="input-group-prepend">
+  <div class="d-flex justify-content-center">
+    <div class="input-group col-10">
+      <div *ngIf="!(isHandset$|async)" class="input-group-prepend">
         <select class="custom-select" formControlName="categoryId" placeholder="Select category">
-          <option *ngFor="let category of categories" [value]="category?.id">
+          <option *ngFor="let category of categories$|async" [value]="category?.id">
             {{category?.name}}
           </option>
         </select>
       </div>
       <input type="search" class="form-control" formControlName="term" placeholder="Search term here....">
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
- </div> -->
-  <div class="input-group pt-sm-4" style="font-size: 12px">
-    <mat-form-field *ngIf="!( isHandset$|async)" appearance="outline" placeholder="Select category..." class="w-25">
-      <mat-select formControlName="categoryId">
-        <mat-option *ngFor="let category of categories$|async" [value]="category?.id">
-          {{category?.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="w-75">
-      <input matInput placeholder="Search" formControlName="term">
-    </mat-form-field>
-    <button mat-raised-button color="accent" class="ml-sm-2 w-25" (click)="search()">Search</button>
+    <div class="w-100"> <button type="submit" class="btn btn-outline-secondary" (click)="search()">Search</button></div>
   </div>
-
-  <div *ngIf="false"  class="pt-5">
-    <mat-form-field appearance="fill">
-      <button mat-raised-button matPrefix color="primary" class="ml-0">prefix</button>
-      <input matInput placeholder="test me heree" class="mx-3">
-      <button mat-raised-button matSuffix color="accent"  class="mr-0">suffix</button>
-    </mat-form-field>
-  </div>
+  <!-- <div class="row align-items-center" style="font-size: 12px">
+    <span class="col-sm-3 pr-0">
+      <mat-form-field *ngIf="!( isHandset$|async)" appearance="outline" placeholder="Select category..."
+        [style.width.%]="100">
+        <mat-select formControlName="categoryId">
+          <mat-option *ngFor="let category of categories$|async" [value]="category?.id">
+            {{category?.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+    <span class="col-sm-5 pl-0">
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <input matInput placeholder="Search" formControlName="term">
+      </mat-form-field>
+    </span>
+    <span class="col-sm-4"> <button mat-raised-button color="accent" (click)="search()" class="btn-search">Search</button></span>
+  </div> -->
 </form>
