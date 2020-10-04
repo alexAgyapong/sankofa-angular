@@ -1,6 +1,6 @@
 <form [formGroup]="searchForm" autocomplete="off">
   <div class="input-group">
-    <div  class="input-group-prepend">
+    <div *ngIf="!(isHandset$|async)" class="input-group-prepend">
       <select class="custom-select" formControlName="categoryId" placeholder="Select category"
       (change)="onCategoryChange(); term.focus()">
       <option *ngFor="let category of categories$|async" [value]="category?.id">
