@@ -1,5 +1,5 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,23 +14,22 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-
   categoryForm: FormGroup;
-
-  isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
   categories$: Observable<Category[]>;
 
+  isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
+
   constructor(private fb: FormBuilder,
-    private breakPointObserver: BreakpointObserver,
-    private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private dialog: MatDialog) { }
+              private breakPointObserver: BreakpointObserver,
+              private productService: ProductService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCategories();
     this.setupForm();
-    this.categoryForm.valueChanges.subscribe(input => console.log({ input }));
+    // this.categoryForm.valueChanges.subscribe(input => console.log({ input }));
   }
 
   setupForm(): void {
@@ -45,20 +44,21 @@ export class CategoryComponent implements OnInit {
     this.categories$ = this.productService.getCategories();
   }
 
-  search(id: string): void {
+  search(id: string, closeDialog = false): void {
     this.router.navigate(['/products'],
       {
         queryParams: {
           categoryId: id,
-          page: '1', start: ''
+          page: '1', start: '',
+          closeSidenav: true
         }
       });
+
+    if (closeDialog) { this.dialog.closeAll(); }
   }
 
 
   showSubCategory(template: TemplateRef<any>, subCategories: Category[]): void {
-    console.log({ subCategories });
-
     this.dialog.open(template, { data: subCategories, panelClass: ['sidenav-modal'] });
   }
 }

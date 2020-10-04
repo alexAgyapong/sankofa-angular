@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
     this.setupForm();
-    this.searchForm.valueChanges.subscribe(input => console.log({ input }));
+    // this.searchForm.valueChanges.subscribe(input => console.log({ input }));
   }
 
   setupForm(): void {

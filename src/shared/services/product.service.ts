@@ -18,13 +18,12 @@ export class ProductService {
     return this.http.get<any>(url, { params })
       .pipe(
         map(res => res.categories),
-        tap(data => console.log({ data })
-        ), shareReplay());
+        shareReplay()
+      );
   }
 
   getProducts(req?: RequestOption): Observable<any> {
     const params = this.setQueryParams(req);
-    console.log({ params }, 'in service');
 
     const url = `${environment.baseURL}/products/`;
     return this.http.get<any>(url, { params });

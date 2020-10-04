@@ -18,7 +18,7 @@
         <a mat-list-item role="button" (click)="showSubCategory(subCategories, category?.subCategories)">{{category?.name}} <mat-icon class="ml-auto">navigate_next</mat-icon></a>
       </ng-container>
       <ng-template #noSubCategory>
-        <a mat-list-item role="button" (click)="search(category?.id)">{{category?.name}}</a>
+        <a mat-list-item role="button" (click)="search(category?.id, true)">{{category?.name}}</a>
       </ng-template>
     </mat-nav-list>
   </mat-dialog-content>

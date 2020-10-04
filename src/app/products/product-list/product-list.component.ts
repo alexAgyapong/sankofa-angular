@@ -40,7 +40,6 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.pageNumber = params?.page ? +params.page : 0;
       // this.test();
       this.searchParams = { ...this.searchParams, perPage: this.pageSize };
-      console.log('params', this.searchParams);
 
       this.getProducts(this.searchParams);
     });
@@ -60,7 +59,6 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   scrollToLastProduct(): void {
-    console.log('loading', this.isLoading);
     if (this.pageNumber > 1) {
       setTimeout(() => {
         this.productElements.changes.subscribe(x => {
@@ -87,18 +85,15 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
               const products = this.getProductsFromLocalStorage();
               if (this.pageNumber > 1 && !this.products.length && products.length) {
                 this.products = products;
-                console.log('page size', this.pageSize, 'page number', this.pageNumber, { products });
               } else {
                 this.products = this.products.concat(res?.products);
               }
             }
-            console.log('all products', this.products);
             this.addProductsToLocalStorage();
             this.scrollToLastProduct();
           }
         }),
-        map(data => ({ ...data, products: this.products })),
-        tap(result => console.log(result.products, 'test...'))
+        map(data => ({ ...data, products: this.products }))
       );
   }
 
@@ -112,7 +107,6 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
           { start, page: this.pageNumber },
         queryParamsHandling: 'merge'
       });
-    console.log('page number', this.pageNumber, { start });
   }
 
 
