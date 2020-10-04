@@ -6,9 +6,9 @@
   </mat-sidenav>
 
   <!-- Right sidenav -->
-  <mat-sidenav #rightDrawer position="end"  class="sidenav" fixedInViewport
+  <mat-sidenav #rightDrawer position="end" class="sidenav" fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"  [ngClass]="{'hidden': !(isHandset$|async)}">
+    [opened]="(isHandset$ | async) === false" [ngClass]="{'hidden': !(isHandset$|async)}">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="#">test 1</a>
@@ -19,7 +19,7 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleFlag(); drawer.toggle() "
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleFlag(); drawer.toggle() "
         *ngIf="!(isHandset$ | async)">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -41,26 +41,13 @@
         </button>
       </ng-container>
       <span class="ml-auto" *ngIf="!(isHandset$|async)">
-        <a role="button" color="primary" [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click"
-          #popoverTrigger="mdePopoverTrigger">Shop</a>
         <a href="#">Sign in</a>
         <a href="#">Fav</a>
       </span>
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="rightDrawer.toggle();"
-      *ngIf="isHandset$ | async">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-
-      <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
-        <!-- <mat-card style="max-width: 300px">
-          <mat-card-content>
-            A material design popover component created using Angular version 8 with the Angular CDK.
-          </mat-card-content>
-        </mat-card> -->
-        <span class="p-5">
-          <!-- <app-category></app-category> -->
-        </span>
-      </mde-popover>
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
     </mat-toolbar>
 
     <!-- Add Content Here -->
