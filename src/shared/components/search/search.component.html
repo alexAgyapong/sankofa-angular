@@ -2,13 +2,15 @@
   <div class="d-flex justify-content-center">
     <div class="input-group col-10">
       <div *ngIf="!(isHandset$|async)" class="input-group-prepend">
-        <select class="custom-select" formControlName="categoryId" placeholder="Select category">
+        <select class="custom-select" formControlName="categoryId" placeholder="Select category"
+          (change)="onCategoryChange(); term.focus()">
           <option *ngFor="let category of categories$|async" [value]="category?.id">
             {{category?.name}}
           </option>
         </select>
       </div>
-      <input type="search" class="form-control" formControlName="term" placeholder="Search term here...." [matAutocomplete]="auto">
+      <input #term type="search" class="form-control" formControlName="term" placeholder="Search term here...."
+        [matAutocomplete]="auto">
     </div>
     <div class="w-100"> <button type="submit" class="btn btn-outline-secondary" (click)="search()">Search</button></div>
   </div>
