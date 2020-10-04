@@ -7,6 +7,7 @@ import { ProductService } from 'src/shared/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/shared/models/product';
 import { RequestOption } from './../../models/request-option';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 
 @Component({
@@ -19,14 +20,14 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   categories$: Observable<any>;
   productAutocomplete$: Observable<Product[]>;
-  
+
   isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
 
   constructor(private fb: FormBuilder,
-              private breakPointObserver: BreakpointObserver,
-              private productService: ProductService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private breakPointObserver: BreakpointObserver,
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -73,7 +74,16 @@ export class SearchComponent implements OnInit {
     // });
   }
 
+  getSelectedProduct(event: MatAutocompleteSelectedEvent): void {
+    console.log({ event });
+    this.navigate();
+  }
+
   search(): void {
+    this.navigate();
+  }
+
+  private navigate(): void {
     this.router.navigate(['/products'],
       {
         queryParams: {

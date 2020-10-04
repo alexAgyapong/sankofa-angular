@@ -33,7 +33,7 @@
     <span class="col-sm-4"> <button mat-raised-button color="accent" (click)="search()" class="btn-search">Search</button></span>
   </div> -->
 
-  <mat-autocomplete #auto="matAutocomplete">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getSelectedProduct($event)">
     <mat-option *ngFor="let product of productAutocomplete$|async" [value]="product?.name">
       {{product?.name|titlecase}}
     </mat-option>

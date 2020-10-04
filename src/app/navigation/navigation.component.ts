@@ -31,6 +31,9 @@ export class NavigationComponent implements OnInit, OnDestroy {
         this.sidenav.opened = false;
         this.showCategories = false;
       }
+      if (params?.term) {
+        this.dialog.closeAll();
+      }
     });
   }
 
