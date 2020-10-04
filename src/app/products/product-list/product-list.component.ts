@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, AfterViewInit, ViewChildren, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -8,6 +8,8 @@ import { RequestOption } from './../../../shared/models/request-option';
 import { Product } from './../../../shared/models/product';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ThemePalette } from '@angular/material/core';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
+
 
 @Component({
   selector: 'app-product-list',
@@ -28,34 +30,37 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   strokeWidth: 2;
 
   @ViewChildren('productsDiv') productElements: QueryList<ElementRef>;
+  @ViewChild('productsContainer') container: ElementRef;
   isLoading = true;
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService) { }
+    private scrollDispatcher: ScrollDispatcher,
+    private productService: ProductService) {
 
+  }
+
+  // @HostListener('window:scroll', [])
+  // checkScroll() {
+  //   const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+  //   console.log({ scrollPosition }, 'scrolll......');
+
+  // }
 
   ngOnInit(): void {
     this.subscription = this.route.queryParams.subscribe(params => {
       this.searchParams = params;
       this.pageNumber = params?.page ? +params.page : 0;
-      // this.test();
       this.searchParams = { ...this.searchParams, perPage: this.pageSize };
 
       this.getProducts(this.searchParams);
     });
   }
 
-  private test() {
-    if (this.pageNumber > 1 && !this.products.length) {
-      const products = this.getProductsFromLocalStorage();
-      this.products = products;
-      console.log('page size', this.pageSize, 'page number', this.pageNumber, { products });
-
-    }
-  }
-
   ngAfterViewInit(): void {
     this.scrollToLastProduct();
+
+    // this.onWindowScroll();
   }
 
   scrollToLastProduct(): void {
@@ -123,9 +128,18 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     return JSON.parse(res) as Product[];
   }
 
-  scrollToTop(el: HTMLElement) {
+  scrollToTop(el: HTMLElement): void {
     el.scrollIntoView();
   }
+
+  onWindowScroll(): void {
+    this.scrollDispatcher.scrolled().subscribe(x => {
+      const scrollPosition = this.container.nativeElement.scrollTop;
+      console.log('I am scrolling', scrollPosition);
+    });
+  }
+
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

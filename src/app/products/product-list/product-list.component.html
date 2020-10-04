@@ -12,7 +12,7 @@
           [priceRanges]="result?.priceRanges">
         </app-filter>
       </div>
-      <div class="col-sm-8" #top>
+      <div class="col-sm-8" cdkScrollable #productsContainer>
         <!-- <span class="row ml-3 border border-danger"><span class="font-weight-bold">{{result?.numberOfProducts}}</span> products found</span> -->
         <div class="row row-cols-1 row-cols-md-3 ">
           <div #productsDiv *ngFor="let product of result?.products">
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="scroll-to-top">
-    <button mat-fab color="accent" aria-label="Scroll to top of page" (click)="scrollToTop(top)">
+    <button mat-fab color="accent" aria-label="Scroll to top of page" (click)="scrollToTop(productsContainer)">
       <mat-icon class="icon-display">expand_less</mat-icon>
     </button>
   </div>
