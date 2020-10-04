@@ -8,11 +8,11 @@
           </option>
         </select>
       </div>
-      <input type="search" class="form-control" formControlName="term" placeholder="Search term here....">
+      <input type="search" class="form-control" formControlName="term" placeholder="Search term here...." [matAutocomplete]="auto">
     </div>
     <div class="w-100"> <button type="submit" class="btn btn-outline-secondary" (click)="search()">Search</button></div>
   </div>
-  <!-- <div class="row align-items-center" style="font-size: 12px">
+  <!-- <div *ngIf="false" class="row align-items-center mt-5" style="font-size: 12px">
     <span class="col-sm-3 pr-0">
       <mat-form-field *ngIf="!( isHandset$|async)" appearance="outline" placeholder="Select category..."
         [style.width.%]="100">
@@ -25,9 +25,15 @@
     </span>
     <span class="col-sm-5 pl-0">
       <mat-form-field appearance="outline" [style.width.%]="100">
-        <input matInput placeholder="Search" formControlName="term">
+        <input matInput placeholder="Search" formControlName="term" [matAutocomplete]="auto">
       </mat-form-field>
     </span>
     <span class="col-sm-4"> <button mat-raised-button color="accent" (click)="search()" class="btn-search">Search</button></span>
   </div> -->
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let product of productAutocomplete$|async" [value]="product?.name">
+      {{product?.name|titlecase}}
+    </mat-option>
+  </mat-autocomplete>
 </form>
