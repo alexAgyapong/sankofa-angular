@@ -70,3 +70,35 @@ export interface ProductResult {
   products: Product[];
   sellers: Seller[];
 }
+
+/* Product data */
+export interface Option {
+  autoShip: boolean;
+  bv: number;
+  cashback: number;
+  cashbackString: string;
+  freeShipping: boolean;
+  ibv: number;
+  name: string;
+  price: number;
+  priceString: string;
+}
+
+export interface ReviewData {
+  count: string;
+}
+
+export interface ProductData {
+  catalogName: string;
+  category: Category;
+  description: string;
+  id: number;
+  image: Image;
+  links: Link[];
+  name: string;
+  onSale: boolean;
+  options: Option[];
+  referralPageUrl: string;
+  reviewData: ReviewData;
+  shortDescription: string;
+}

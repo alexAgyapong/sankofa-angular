@@ -25,6 +25,7 @@ import { FilterComponent } from './shared/components/filter/filter.component';
 
 import { MdePopoverModule } from '@material-extended/mde';
 import { CategoryComponent } from './shared/components/category/category.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CategoryComponent } from './shared/components/category/category.compone
     ProductListComponent,
     ProductCardComponent,
     FilterComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductDetailsComponent
   ],
   imports: [
   BrowserModule,

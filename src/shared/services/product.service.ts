@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ProductData } from '../models/product';
 import { RequestOption } from './../models/request-option';
 
 @Injectable({
@@ -22,10 +23,16 @@ export class ProductService {
       );
   }
 
+  getProductDetails(productId: string, req?: RequestOption): Observable<ProductData> {
+    const params = this.setQueryParams(req);
+    const url = `${environment.baseURL}/products/${productId}`;
+
+    return this.http.get<any>(url, { params });
+  }
   getProducts(req?: RequestOption): Observable<any> {
     const params = this.setQueryParams(req);
-
     const url = `${environment.baseURL}/products/`;
+
     return this.http.get<any>(url, { params });
   }
 

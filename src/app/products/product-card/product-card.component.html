@@ -1,5 +1,5 @@
-<div *ngIf="true" class="col mb-4">
-  <a [routerLink]="['/']" routerLinkActive="router-link-active">
+<div class="col mb-4">
+  <a [routerLink]="['details', product?.id]">
     <mat-card class="card-container m-sm-2 mb-3">
       <img mat-card-image [src]="product?.image?.sizes[2]?.url" class="img-fluid" [alt]="product?.image?.caption">
       <mat-card-content>
@@ -15,7 +15,7 @@
   </a>
 </div>
 
-
+<!--
 <div *ngIf="false" class="col mb-4">
   <a class="mb-3 h-100" [routerLink]="['/']" routerLinkActive="router-link-active" >
     <img [src]="product?.image?.sizes[2]?.url" [alt]="product?.image?.caption" class="img-fluid">
@@ -27,4 +27,4 @@
       <ng-template #priceRange>{{product?.minimumPriceString}} - {{product?.maximumPriceString}}</ng-template>
     </span>
   </a>
-</div>
+</div> -->
