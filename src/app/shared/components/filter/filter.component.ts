@@ -37,6 +37,10 @@ export class FilterComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getPriceRange(priceRange){
+    
+  }
+
   getId(id: string, idType: string): void {
     // localStorage.removeItem('products'); // remove products from storage
     // const res = localStorage.getItem('products');

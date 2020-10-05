@@ -46,7 +46,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p *ngFor="let priceRange of priceRanges">
-          <a role="button">{{priceRange?.minimumPriceString}} - {{priceRange?.maximumPriceString}}</a>
+          <a role="button" (click)="getPriceRange(priceRange)">{{priceRange?.minimumPriceString}} - {{priceRange?.maximumPriceString}}</a>
         </p>
       </mat-expansion-panel>
     </mat-accordion>

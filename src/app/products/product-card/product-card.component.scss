@@ -1,6 +1,5 @@
 .card-container {
-  max-width: 300px;
-  //  max-height: 400px;
+  max-width: 85vw;
   max-height: 100%;
 }
 
@@ -15,4 +14,11 @@
 
 a{
   text-decoration: none;
+}
+
+@media screen and (min-width:768px){
+  .card-container {
+    max-width: 300px;
+    max-height: 100%;
+  }
 }

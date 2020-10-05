@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, AfterViewInit, ViewChildren, HostListener } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, AfterViewInit, ViewChildren, HostListener, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { ProductResult } from 'src/shared/models/product';
 import { ProductService } from 'src/shared/services/product.service';
 import { RequestOption } from './../../../shared/models/request-option';
@@ -9,6 +9,8 @@ import { Product } from './../../../shared/models/product';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ThemePalette } from '@angular/material/core';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -32,8 +34,13 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('productsDiv') productElements: QueryList<ElementRef>;
   @ViewChild('productsContainer') container: ElementRef;
   isLoading = true;
+
+  isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
+
   constructor(private route: ActivatedRoute,
     private router: Router,
+    private breakPointObserver: BreakpointObserver,
+    private dialog: MatDialog,
     private scrollDispatcher: ScrollDispatcher,
     private productService: ProductService) {
 
@@ -139,6 +146,9 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  showFilter(template: TemplateRef<any>, result: ProductResult): void {
+    this.dialog.open(template, { data: result, panelClass: ['full-screen-modal'] });
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
