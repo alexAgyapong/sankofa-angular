@@ -37,10 +37,6 @@ export class FilterComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getPriceRange(priceRange){
-    
-  }
-
   getId(id: string, idType: string): void {
     // localStorage.removeItem('products'); // remove products from storage
     // const res = localStorage.getItem('products');
@@ -59,6 +55,10 @@ export class FilterComponent implements OnInit, AfterViewInit {
         if (this.sellers.length === 1) { return; }
         this.filters = { ...this.filters, sellerId: id };
         break;
+      case 'price':
+        if (this.priceRanges.length === 1) { return; }
+        this.filters = { ...this.filters, priceRangeId: id };
+        break;
     }
 
     this.router.navigate(['/products'], { queryParams: this.filters, queryParamsHandling: 'merge' });
@@ -66,7 +66,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
   }
 
   resetFilters(): void {
-    this.filters = { ...this.filters, categoryId: '', brandId: '', sellerId: '' };
+    this.filters = { ...this.filters, categoryId: '', brandId: '', sellerId: '', priceRangeId: '' };
     this.router.navigate(['/products'], { queryParams: { ...this.filters, start: '', page: 1 }, queryParamsHandling: 'merge' });
     console.log('filters cleared', this.filters);
   }
@@ -76,4 +76,5 @@ interface FilterParam {
   categoryId?: string;
   brandId?: string;
   sellerId?: string;
+  priceRangeId?: string;
 }

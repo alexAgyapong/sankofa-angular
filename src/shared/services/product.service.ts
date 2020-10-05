@@ -38,6 +38,7 @@ export class ProductService {
         categoryId: req?.categoryId || '',
         brandId: req?.brandId || '',
         sellerId: req?.sellerId || '',
+        priceRangeId: req?.priceRangeId || '',
         perPage: req?.perPage?.toString() || '30',
         start: req?.start?.toString() || ''
       }
