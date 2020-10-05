@@ -36,4 +36,7 @@ export class ProductDetailsComponent implements OnInit {
     this.product$ = this.productService.getProductDetails(productId);
   }
 
+  scrollTo(el: HTMLElement): void {
+    el.scrollIntoView();
+  }
 }
