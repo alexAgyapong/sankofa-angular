@@ -27,6 +27,7 @@ import { MdePopoverModule } from '@material-extended/mde';
 import { CategoryComponent } from './shared/components/category/category.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { RemoveHtmlTagsPipe } from './shared/pipes/remove-html-tags.pipe';
+import { DecodeHtmlStringPipe } from './shared/pipes/decode-html-string.pipe';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RemoveHtmlTagsPipe } from './shared/pipes/remove-html-tags.pipe';
     FilterComponent,
     CategoryComponent,
     ProductDetailsComponent,
-    RemoveHtmlTagsPipe
+    RemoveHtmlTagsPipe,
+    DecodeHtmlStringPipe
   ],
   imports: [
   BrowserModule,
