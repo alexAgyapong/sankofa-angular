@@ -32,7 +32,8 @@ body {
 .custom-mat-form-field {
   height: 20px;
 }
-
+.wrapper {
+}
 .full-screen-modal {
   max-width: unset !important;
   width: 100%;
@@ -67,6 +68,11 @@ body {
   }
 }
 
+/*utitlies*/
+.w-options {
+  width: 100%;
+}
+
 @include media-breakpoint-up(sm) {
   .full-screen-modal {
     width: 50%;
@@ -77,5 +83,9 @@ body {
       height: 100%;
       width: 100%;
     }
+  }
+
+  .w-options {
+    width: 50%;
   }
 }
