@@ -8,6 +8,7 @@ import { Product } from './../../../shared/models/product';
 })
 export class ProductCardComponent implements OnInit {
   @Output() favouriteAdded = new EventEmitter<Product>();
+  @Output() favouriteRemoved = new EventEmitter<Product>();
   @Input() product: Product;
   isFavourite = false;
 
@@ -23,6 +24,6 @@ export class ProductCardComponent implements OnInit {
 
   removeFromFavourite(product: Product): void {
     this.isFavourite = false;
-    this.favouriteAdded.emit(product);
+    this.favouriteRemoved.emit(product);
   }
 }

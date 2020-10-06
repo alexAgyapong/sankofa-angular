@@ -36,6 +36,7 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = true;
 
   isHandset$: Observable<boolean> = this.breakPointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
+  favourites: Product[] = [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -148,6 +149,21 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showFilter(template: TemplateRef<any>, result: ProductResult): void {
     this.dialog.open(template, { data: result, panelClass: ['full-screen-modal'] });
+  }
+
+  addToFavourites(product: Product): void {
+    if (product) {
+      this.favourites.push(product);
+    }
+
+    localStorage.setItem('favouriteProducts', JSON.stringify(this.favourites))
+  }
+
+  removeFromFavourites(product: Product): void {
+    const index = this.favourites.findIndex(p => p.id === product.id);
+    this.favourites.splice(index, 1);
+
+    localStorage.setItem('favouriteProducts', JSON.stringify(this.favourites))
   }
 
   ngOnDestroy(): void {
