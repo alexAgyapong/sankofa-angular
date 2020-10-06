@@ -1,4 +1,4 @@
-<div class=" m-sm-5  pt-3 border border-danger">
+<div class=" m-sm-5  pt-3">
   <ng-container *ngIf="product$|async as product">
     <div class="row">
       <div class="col-11 col-sm-5">
@@ -9,13 +9,13 @@
           <p>{{product?.catalogName|uppercase}}</p>
           <p>{{product?.name|decodeHtmlString}}</p>
           <!-- <small>Product code: {{product?.id}}</small> -->
-         <span *ngIf="+product?.reviewData?.count" class="d-flex align-items-center">
-           <!-- <span class="pr-2">{{product?.reviewData?.rating}}</span> -->
-            <star-rating [value]="product?.reviewData?.rating" [totalstars]="5" checkedcolor="gold" uncheckedcolor="gray" size="24px"
-              readonly="true">
+          <span *ngIf="+product?.reviewData?.count" class="d-flex align-items-center">
+            <!-- <span class="pr-2">{{product?.reviewData?.rating}}</span> -->
+            <star-rating [value]="product?.reviewData?.rating" [totalstars]="5" checkedcolor="gold"
+              uncheckedcolor="gray" size="24px" readonly="true">
             </star-rating>
-            <ng-container >({{product?.reviewData?.count}})</ng-container>
-         </span>
+            <ng-container>({{product?.reviewData?.count}})</ng-container>
+          </span>
           <div class="mt-5">
             <ng-container *ngIf="product?.options?.length > 1; else price">
               <p>Size:</p>
@@ -36,16 +36,27 @@
             <a role="button" mat-stroked-button [href]="product?.referralPageUrl" target="_blank"
               rel="noopener noreferrer">Visit Partner Store <mat-icon>launch</mat-icon></a>
           </div>
-          <div class="see-more">
+          <div class="see-more d-none d-sm-block">
             <p>{{product?.shortDescription|decodeHtmlString}}</p>
             <a role="button" class="btn btn-link pl-0 pt-0 " (click)="scrollTo(info)"> See details</a>
           </div>
         </div>
       </div>
     </div>
-    <section class="col-auto my-sm-3" #info>
+    <section class="col-auto my-sm-3 d-none d-sm-block" #info>
       <h1 class="text-center">Product Information</h1>
       <p class="px-1">{{product?.description|removeHtmlTags|decodeHtmlString}}</p>
     </section>
+    <span class="d-block d-sm-none" #info>
+      <mat-expansion-panel [class.mat-expansion-panel]="false" c>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            <!-- <h1 class="text-center">Product Information</h1> -->
+            Product Information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{product?.description|removeHtmlTags|decodeHtmlString}}</p>
+      </mat-expansion-panel>
+    </span>
   </ng-container>
 </div>
