@@ -4,7 +4,7 @@
       <img mat-card-image [src]="product?.image?.sizes[2]?.url" class="img-fluid" [alt]="product?.image?.caption">
       <mat-card-content>
         <span class="d-flex flex-column justify-content-between info mb-3 px-2">
-          <p class="text-truncate">{{product?.name}}</p>
+          <p class="text-truncate">{{product?.name|decodeHtmlString}}</p>
           <ng-container *ngIf="product?.maximumPrice===product?.minimumPrice; else priceRange">
             <p class="mb-0 ">{{product?.maximumPriceString}}</p>
           </ng-container>

@@ -23,7 +23,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p *ngFor="let brand of brands">
-          <a role="button" (click)="getId(brand?.id, 'brand')">{{brand?.name}} ({{brand?.productCount}})</a>
+          <a role="button" (click)="getId(brand?.id, 'brand')">{{brand?.name|decodeHtmlString}} ({{brand?.productCount}})</a>
           <!-- <mat-radio-button [value]="brand?.id" formControlName="brandId">{{brand?.name}}</mat-radio-button> -->
         </p>
       </mat-expansion-panel>
@@ -35,7 +35,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p *ngFor="let seller of sellers">
-          <a role="button" (click)="getId(seller?.id, 'seller')">{{seller?.name}} ({{seller?.productCount}})</a>
+          <a role="button" (click)="getId(seller?.id, 'seller')">{{seller?.name|decodeHtmlString}} ({{seller?.productCount}})</a>
         </p>
       </mat-expansion-panel>
       <mat-divider *ngIf="sellers?.length"></mat-divider>
