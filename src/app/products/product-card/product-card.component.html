@@ -1,4 +1,4 @@
-<div class="col mb-4">
+<div class="col mb-4 position-relative">
   <a [routerLink]="['details', product?.id]">
     <mat-card class="card-container m-sm-2 mb-3">
       <img mat-card-image [src]="product?.image?.sizes[2]?.url" class="img-fluid" [alt]="product?.image?.caption">
@@ -13,6 +13,14 @@
       </mat-card-content>
     </mat-card>
   </a>
+
+  <button *ngIf="isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon filled" (click)="removeFromFavourite(product)">
+    <mat-icon>favorite</mat-icon>
+  </button>
+
+  <button *ngIf="!isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon border" (click)="addToFavourite(product)">
+    <mat-icon>favorite_border</mat-icon>
+  </button>
 </div>
 
 <!--

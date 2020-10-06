@@ -12,13 +12,33 @@
   height: 60px;
 }
 
-a{
+a {
   text-decoration: none;
 }
+.mat-mini-fab.mat-mini-gray {
+  color: gray;
+}
 
-@media screen and (min-width:768px){
+.fav-icon {
+  position: absolute;
+  // bottom: 10px;
+  // right: 60px;
+  bottom: .8rem;
+  right: 3.8rem;
+  margin: 0.8rem 1.2rem;
+}
+
+.icon-button-container{
+  width:1.2rem;
+}
+
+@media screen and (min-width: 768px) {
   .card-container {
     max-width: 300px;
     max-height: 100%;
+  }
+
+  .fav-icon {
+    right: 1rem;
   }
 }
