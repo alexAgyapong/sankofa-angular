@@ -51,11 +51,12 @@
       <mat-expansion-panel [class.mat-expansion-panel]="false" c>
         <mat-expansion-panel-header>
           <mat-panel-title class="title">
-            <!-- <h1 class="text-center">Product Information</h1> -->
             Product Information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>{{product?.description|removeHtmlTags|decodeHtmlString}}</p>
+        <ng-template matExpansionPanelContent>
+          <p>{{product?.description|removeHtmlTags|decodeHtmlString}}</p>
+        </ng-template>
       </mat-expansion-panel>
     </span>
   </ng-container>
