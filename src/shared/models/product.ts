@@ -79,6 +79,7 @@ export interface Option {
   cashbackString: string;
   freeShipping: boolean;
   ibv: number;
+  ciPoints: number;
   name: string;
   price: number;
   priceString: string;
@@ -86,6 +87,7 @@ export interface Option {
 
 export interface ReviewData {
   count: string;
+  rating: number;
 }
 
 export interface ProductData {

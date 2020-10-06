@@ -20,14 +20,15 @@ import { AppInterceptor } from 'src/shared/app-interceptor';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { FilterComponent } from './shared/components/filter/filter.component';
-
-// Libraries
-
-import { MdePopoverModule } from '@material-extended/mde';
 import { CategoryComponent } from './shared/components/category/category.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { RemoveHtmlTagsPipe } from './shared/pipes/remove-html-tags.pipe';
 import { DecodeHtmlStringPipe } from './shared/pipes/decode-html-string.pipe';
+
+// Libraries
+
+import { MdePopoverModule } from '@material-extended/mde';
+import { RatingModule } from 'ng-starrating';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { DecodeHtmlStringPipe } from './shared/pipes/decode-html-string.pipe';
   LayoutModule,
   MaterialModule,
   AppRoutingModule,
-  MdePopoverModule
+  MdePopoverModule,
+  RatingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
