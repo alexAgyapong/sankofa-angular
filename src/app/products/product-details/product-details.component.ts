@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/shared/services/product.service';
 import { Observable } from 'rxjs';
 import { ProductData } from 'src/shared/models/product';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -16,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   product$ = new Observable<ProductData>();
 
   constructor(private route: ActivatedRoute,
+    private location: Location,
     private router: Router,
     private breakPointObserver: BreakpointObserver,
     private dialog: MatDialog,
@@ -38,5 +40,9 @@ export class ProductDetailsComponent implements OnInit {
 
   scrollTo(el: HTMLElement): void {
     el.scrollIntoView();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

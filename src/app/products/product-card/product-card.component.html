@@ -6,7 +6,7 @@
         <span class="d-flex flex-column justify-content-between info mb-3 px-2">
           <p class="text-truncate">{{product?.name|decodeHtmlString}}</p>
           <ng-container *ngIf="product?.maximumPrice===product?.minimumPrice; else priceRange">
-            <p class="mb-0 ">{{product?.maximumPriceString}}</p>
+            <p class="font-weight-bold mb-0 ">{{product?.maximumPriceString}}</p>
           </ng-container>
           <ng-template #priceRange>{{product?.minimumPriceString}} - {{product?.maximumPriceString}}</ng-template>
         </span>
