@@ -10,6 +10,7 @@ export class ProductCardComponent implements OnInit {
   @Output() favouriteAdded = new EventEmitter<Product>();
   @Output() favouriteRemoved = new EventEmitter<Product>();
   @Input() product: Product;
+  @Input() isScrollable = false;
   isFavourite = false;
 
   constructor() { }

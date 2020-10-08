@@ -1,6 +1,6 @@
-<div class="col mb-4 position-relative">
-  <a [routerLink]="['details', product?.id]">
-    <mat-card class="card-container m-sm-2 mb-3">
+<div class="col mb-4 position-relative" [ngClass]="{'m-sm-0': isScrollable, 'p-sm-0': isScrollable}">
+  <a [routerLink]="['/products/details', product?.id]">
+    <mat-card class="card-container m-sm-2 mb-3" [ngClass]="{'card-container-scrollable': isScrollable}">
       <img mat-card-image [src]="product?.image?.sizes[2]?.url" class="img-fluid" [alt]="product?.image?.caption">
       <mat-card-content>
         <span class="d-flex flex-column justify-content-between info mb-3 px-2">
@@ -14,13 +14,15 @@
     </mat-card>
   </a>
 
-  <button *ngIf="isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon filled" (click)="removeFromFavourite(product)">
-    <mat-icon>favorite</mat-icon>
-  </button>
+  <ng-container *ngIf="!isScrollable">
+    <button *ngIf="isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon filled" (click)="removeFromFavourite(product)">
+      <mat-icon>favorite</mat-icon>
+    </button>
 
-  <button *ngIf="!isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon border" (click)="addToFavourite(product)">
-    <mat-icon>favorite_border</mat-icon>
-  </button>
+    <button *ngIf="!isFavourite" mat-mini-fab color="gray" class="fav-icon" aria-label="Favourite icon border" (click)="addToFavourite(product)">
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+  </ng-container>
 </div>
 
 <!--

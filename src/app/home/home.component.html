@@ -1,4 +1,15 @@
-<p>home works!</p>
+<!-- <div *ngIf="categories$|async as categories" class="m-5">
+    <div *ngFor="let category of categories">
+      <span>{{category?.name}}</span>
+    </div>
+</div> -->
 
-
-<!-- <app-search></app-search> -->
+<ng-container *ngIf="productResult$|async as result ">
+ <div class="horizontal-scroll-container">
+    <div id="horizontal-scroll" class="d-flex flex-nowrap overflow-auto pt-5" >
+      <div #productsDiv *ngFor="let product of result?.products.slice(0,10)">
+        <app-product-card [product]="product" [isScrollable]="true"></app-product-card>
+      </div>
+    </div>
+ </div>
+</ng-container>

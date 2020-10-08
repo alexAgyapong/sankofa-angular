@@ -3,6 +3,11 @@
   max-height: 100%;
 }
 
+.card-container-scrollable {
+  width: 50vw;
+  height: 100%;
+}
+
 .example-header-image {
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
@@ -36,6 +41,11 @@ a {
   .card-container {
     max-width: 300px;
     max-height: 100%;
+  }
+
+  .card-container-scrollable {
+    width: 20vw;
+    height: 100%;
   }
 
   .fav-icon {
