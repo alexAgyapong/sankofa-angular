@@ -1,15 +1,42 @@
 <!-- <div *ngIf="categories$|async as categories" class="m-5">
-    <div *ngFor="let category of categories">
-      <span>{{category?.name}}</span>
-    </div>
 </div> -->
+<!-- Carousel -->
+<header>
+  <mat-carousel
+    timings="200ms ease-in"
+    [autoplay]="true"
+    interval="6000"
+    color="white"
+  >
+    <mat-carousel-slide
+      *ngFor="let slide of slides; let i = index"
+      [image]="slide.image"
+      overlayColor="#ffffff"
+      [hideOverlay]="true"
+    ></mat-carousel-slide>
+  </mat-carousel>
+</header>
+
+<div class="container mt-3 mt-sm-5">
+  <div class="row row-cols-1 row-cols-md-6">
+    <div *ngFor="let category of selectedCategoryImages">
+      <div class="mx-sm-3">
+        <a class="d-flex flex-column justify-content-center align-items-center" [routerLink]="['/products']"
+          [queryParams]="{categoryId:category?.id}">
+          <img [src]="category.imgUrl" alt="" class="img-fluid rounded-circle category-img">
+          <span class="pt-2">{{category?.name}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <ng-container *ngIf="productResult$|async as result ">
- <div class="horizontal-scroll-container">
-    <div id="horizontal-scroll" class="d-flex flex-nowrap overflow-auto pt-5" >
+  <div class="horizontal-scroll-container mt-5 py-5">
+    <div id="horizontal-scroll" class="d-flex flex-nowrap overflow-auto pt-5">
       <div #productsDiv *ngFor="let product of result?.products.slice(0,10)">
         <app-product-card [product]="product" [isScrollable]="true"></app-product-card>
       </div>
     </div>
- </div>
+  </div>
 </ng-container>

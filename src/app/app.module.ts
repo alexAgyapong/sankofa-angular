@@ -29,6 +29,7 @@ import { DecodeHtmlStringPipe } from './shared/pipes/decode-html-string.pipe';
 
 import { MdePopoverModule } from '@material-extended/mde';
 import { RatingModule } from 'ng-starrating';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 
 @NgModule({
@@ -46,15 +47,16 @@ import { RatingModule } from 'ng-starrating';
     DecodeHtmlStringPipe
   ],
   imports: [
-  BrowserModule,
-  BrowserAnimationsModule,
-  HttpClientModule,
-  ReactiveFormsModule,
-  LayoutModule,
-  MaterialModule,
-  AppRoutingModule,
-  MdePopoverModule,
-  RatingModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    LayoutModule,
+    MaterialModule,
+    AppRoutingModule,
+    MdePopoverModule,
+    RatingModule,
+    MatCarouselModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
